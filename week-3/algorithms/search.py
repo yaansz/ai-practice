@@ -99,9 +99,138 @@ def bfs(initial_table, final_state, size):
 
         for child in children:
             if child.show() not in viewed:
-                viewed.add(child.show())
                 queue.append(child)
+                viewed.add(child.show())
 
-    return node
+    print(node)
+    print(node.depth)
+    print(node.parent)
+    print(final_state in viewed)
 
+
+def print_children(children):
+
+    for child in children:
+        print(child)
+
+
+if __name__ == "__main__":
+
+    print("direita-baixo")
+    node = Node([1, 2, 3,
+                4, 5, 6, 
+                7, 8, 0], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("esquerda-cima")
+    node = Node([0, 2, 3,
+                4, 5, 6, 
+                7, 8, 1], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("esquerda-baixo")
+    node = Node([7, 2, 3,
+                4, 5, 6, 
+                0, 8, 1], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("direita-cima")
+    node = Node([7, 2, 0,
+                4, 5, 6, 
+                3, 8, 1], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("centro-baixo")
+    node = Node([1, 2, 3,
+                4, 5, 6, 
+                7, 0, 8], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("centro-cima")
+    node = Node([2, 0, 3,
+                4, 5, 6, 
+                7, 8, 1], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("centro-esquerda")
+    node = Node([7, 2, 3,
+                0, 5, 6, 
+                4, 8, 1], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("centro-direita")
+    node = Node([7, 2, 6,
+                4, 5, 0, 
+                3, 8, 1], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+
+    print("centro")
+    node = Node([7, 2, 6,
+                4, 0, 5, 
+                3, 8, 1], 
+                3, None, 0, "NoOp")
+
+    print("Pai: ")
+    print(node)
+    print("Filhos: ")
+    print_children(children_generator(node))
+
+
+    
 
