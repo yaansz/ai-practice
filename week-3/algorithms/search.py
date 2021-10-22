@@ -91,8 +91,7 @@ def bfs(initial_table, final_state, size):
 
         # It's the goal?
         if node.show() == final_state:
-            final_state = node
-            return queue
+            return node
             
         # It's not the goal :(
         children = children_generator(node)
@@ -102,10 +101,6 @@ def bfs(initial_table, final_state, size):
                 queue.append(child)
                 viewed.add(child.show())
 
-    print(node)
-    print(node.depth)
-    print(node.parent)
-    print(final_state in viewed)
 
 
 def print_children(children):
