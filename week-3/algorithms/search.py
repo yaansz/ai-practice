@@ -54,38 +54,38 @@ def dfs(initial_state):
     max_frontier    = 0
     scanned         = 0
 
-    # Create a queue for the states to be explored
-    queue = deque()
+    # Create a stack for the states to be explored
+    stack = deque() # Stack is LIFO
     explored = set()
 
-    # Add the initial state to the queue
-    queue.append(initial_state)
+    # Add the initial state to the stack
+    stack.append(initial_state)
 
-    # While the queue is not empty
-    while queue:
+    # While the stack is not empty
+    while stack:
 
-        # Remove the first state from the queue
-        current_state = queue.pop()
+        # Remove the first state from the stack
+        current_state = stack.pop()
         explored.add(current_state.key)
 
         # If the current state is the goal state
         if current_state.goal():
-            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": scanned}
+            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": scanned}
 
 
-        # Add the current state's children to the queue
-        neighbors = current_state.get_neighbors()
+        # Add the current state's children to the stack
+        neighbors = current_state.get_neighbors()[::-1]
         for neighbor in neighbors:
             if neighbor.key not in explored:
                 scanned += 1
                 explored.add(neighbor.key)
-                queue.append(neighbor)
+                stack.append(neighbor)
 
                 if neighbor.depth > max_depth:
                     max_depth = neighbor.depth
 
-        if len(queue) > max_frontier:
-            max_frontier = len(queue)
+        if len(stack) > max_frontier:
+            max_frontier = len(stack)
 
-    # If the queue is empty and the goal state has not been found
-    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": scanned}
+    # If the stack is empty and the goal state has not been found
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": scanned}

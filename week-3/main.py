@@ -29,15 +29,23 @@ def main():
     goal_state = "".join(str(i) for i in goal)
     state = State(table, goal_state)
     
+    # Running
+
     start_time = time.time()
-    feedback = bfs(State(table, goal_state))
+    
+    if METHODS.get(method) is None:
+        raise AttributeError("Method not found")
+    feedback = METHODS[method](State(table, goal_state))
     end_time = time.time()
 
+
+    # Feedback
+
     current_state = feedback["state"]
-    # {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue)}
+    print(f"Method: {method}")
     print(f"Final State Found: {current_state is not None}")
     if current_state is not None:
-        print(f"Path             :{current_state}")
+        #print(f"Path             :{current_state}")
         print(f"Cost             : {current_state.cost}")
         print(f"Depth            : {current_state.depth}")
     print(f"Max_Depth        : {feedback['max_depth']}")
@@ -48,17 +56,10 @@ def main():
     print(f"RAM_Usage        : {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1000.0} kb")
 
 
-    #traceback_board(current_state)
-
-
-
-
-
-
-
-    
+    #traceback_board(current_state) 
     return
 
+METHODS = {'bfs': bfs, 'dfs': dfs}
 
 if __name__ == '__main__':
     main()
