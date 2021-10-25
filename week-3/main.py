@@ -59,7 +59,7 @@ def main():
     #traceback_board(current_state) 
     return
 
-METHODS = {'bfs': bfs, 'dfs': dfs}
+METHODS = {'bfs': bfs, 'dfs': dfs, 'idfs': idfs}
 
 if __name__ == '__main__':
     main()
