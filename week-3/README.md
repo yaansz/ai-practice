@@ -12,3 +12,5 @@ O arquivo [show.py](./show.py) contém apenas uma implementação extra para aju
 
 Para rodar os testes automatizados é necessário rodar o script [run.sh](./run.sh). (Funcionando em Windows e Linux)
 
+A pasta [res](./res) contém os resultados para os testes do ./run.sh
+

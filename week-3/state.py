@@ -2,10 +2,14 @@ def traceback(state):
     """
     Traceback function to print the path of the current state.
     """
-    if state.parent is None:
-        return ""
-    return traceback(state.parent) + " " + state.action
+    moves = []
 
+    while state.parent:
+        moves.append(state.action)
+        state = state.parent
+
+    moves.reverse()
+    return ", ".join(moves)
 
 def traceback_board(state):
     """

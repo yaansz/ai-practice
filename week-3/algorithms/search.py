@@ -75,7 +75,6 @@ def dfs(initial_state, limit=-1):
         neighbors = current_state.get_neighbors()[::-1]
         for neighbor in neighbors:
             if neighbor.key not in explored:
-                scanned += 1
                 explored.add(neighbor.key)
                 stack.append(neighbor)
 

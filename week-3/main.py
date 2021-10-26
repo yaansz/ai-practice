@@ -40,21 +40,22 @@ def main():
 
 
     # Feedback
+    f = open("res/" + method + ".txt", "w")
 
     current_state = feedback["state"]
-    print(f"Method: {method}")
-    print(f"Final State Found: {current_state is not None}")
+    f.write(f"Method: {method}")
+    f.write(f"Final State Found: {current_state is not None}\n")
     if current_state is not None:
-        #print(f"Path             :{current_state}")
-        print(f"Cost             : {current_state.cost}")
-        print(f"Depth            : {current_state.depth}")
-    print(f"Max_Depth        : {feedback['max_depth']}")
-    print(f"Final_Frontier   : {feedback['final_frontier']}")
-    print(f"Max_Frontier     : {feedback['max_frontier']}")
-    print(f"Scanned          : {feedback['scanned']}")
-    print(f"Elapsed_Time     : {end_time - start_time} s")
-    print(f"RAM_Usage        : {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1000.0} kb")
-
+        f.write(f"Path             : {current_state}\n")
+        f.write(f"Cost             : {current_state.cost}\n")
+        f.write(f"Depth            : {current_state.depth}\n")
+    f.write(f"Max_Depth        : {feedback['max_depth']}\n")
+    f.write(f"Final_Frontier   : {feedback['final_frontier']}\n")
+    f.write(f"Max_Frontier     : {feedback['max_frontier']}\n")
+    f.write(f"Scanned          : {feedback['scanned']}\n")
+    f.write(f"Elapsed_Time     : {end_time - start_time} s\n")
+    f.write(f"RAM_Usage        : {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1000.0} kb\n")
+    f.close()
 
     #traceback_board(current_state) 
     return

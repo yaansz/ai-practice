@@ -1,0 +1,10 @@
+Method: bfsFinal State Found: True
+Path             : up, left, up, left, down, down, right, up, up, left, down, down, right, up, up, right, down, down, left, up, up, right, down, left, up, left, down, right, down, right
+Cost             : 30
+Depth            : 30
+Max_Depth        : 31
+Final_Frontier   : 32
+Max_Frontier     : 24053
+Scanned          : 181440
+Elapsed_Time     : 2.552396535873413 s
+RAM_Usage        : 61.936 kb
