@@ -6,7 +6,6 @@ def bfs(initial_state):
     # Performance
     max_depth       = 0
     max_frontier    = 0
-    scanned         = 0
 
     # Create a queue for the states to be explored
     queue = deque()
@@ -24,14 +23,13 @@ def bfs(initial_state):
 
         # If the current state is the goal state
         if current_state.goal():
-            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": scanned}
+            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": len(explored)}
 
 
         # Add the current state's children to the queue
         neighbors = current_state.get_neighbors()
         for neighbor in neighbors:
             if neighbor.key not in explored:
-                scanned += 1
                 explored.add(neighbor.key)
                 queue.append(neighbor)
 
@@ -42,7 +40,7 @@ def bfs(initial_state):
             max_frontier = len(queue)
 
     # If the queue is empty and the goal state has not been found
-    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": scanned}
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": len(explored)}
 
 
 
@@ -51,7 +49,6 @@ def dfs(initial_state, limit=-1):
     # Performance
     max_depth       = 0
     max_frontier    = 0
-    scanned         = 0
 
     # Create a stack for the states to be explored
     stack = deque() # Stack is LIFO
@@ -69,7 +66,7 @@ def dfs(initial_state, limit=-1):
 
         # If the current state is the goal state
         if current_state.goal():
-            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": scanned}
+            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
 
         if limit > 0 and current_state.cost > limit:
             return False
@@ -92,7 +89,7 @@ def dfs(initial_state, limit=-1):
             max_frontier = len(stack)
 
     # If the stack is empty and the goal state has not been found
-    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": scanned}
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
 
 
 def idfs(initial_state):
