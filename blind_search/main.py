@@ -43,7 +43,7 @@ def main():
     f = open("res/" + method + ".txt", "w")
 
     current_state = feedback["state"]
-    f.write(f"Method: {method}")
+    f.write(f"Method: {method}\n")
     f.write(f"Final State Found: {current_state is not None}\n")
     if current_state is not None:
         f.write(f"Path             : {current_state}\n")
@@ -57,7 +57,8 @@ def main():
     f.write(f"RAM_Usage        : {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1000.0} kb\n")
     f.close()
 
-    #traceback_board(current_state) 
+    if(method == "bfs"):
+        traceback_board(current_state) 
     return
 
 METHODS = {'bfs': bfs, 'dfs': dfs, 'idfs': idfs}

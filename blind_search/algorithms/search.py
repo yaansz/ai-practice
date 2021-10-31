@@ -68,21 +68,17 @@ def dfs(initial_state, limit=-1):
         if current_state.goal():
             return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
 
-        if limit > 0 and current_state.cost > limit:
-            return False
-
         # Add the current state's children to the stack
         neighbors = current_state.get_neighbors()[::-1]
         for neighbor in neighbors:
             if neighbor.key not in explored:
-                explored.add(neighbor.key)
-                stack.append(neighbor)
 
                 if neighbor.depth > max_depth:
                     max_depth = neighbor.depth
                 
-                if limit > 0 and neighbor.cost > limit:
-                    return False
+                if limit > 0 and neighbor.depth <= limit:
+                    stack.append(neighbor)
+                    explored.add(neighbor.key)
 
         if len(stack) > max_frontier:
             max_frontier = len(stack)
@@ -92,12 +88,22 @@ def dfs(initial_state, limit=-1):
 
 
 def idfs(initial_state):
-    minimum = 10000
-    maximum = 100000
-    for i in range(minimum, maximum, 10000):
+    minimum = 0
+    maximum = 1000
+
+    final = {"state": None, "max_depth": 0, "max_frontier": 0, "final_frontier": 0, "scanned": 0}
+
+    for i in range(minimum, maximum, 1):
         answer = dfs(initial_state, i)
 
-        if type(answer) is bool:
+        final["max_depth"]    = max(final["max_depth"]   , answer["max_depth"]) 
+        final["max_frontier"] = max(final["max_frontier"], answer["max_frontier"])
+        final["scanned"] += answer["scanned"]
+
+        if answer['state'] is None:
             continue
-            
-        return answer
+        
+        final["state"] = answer["state"]
+
+        return final
+    return final
