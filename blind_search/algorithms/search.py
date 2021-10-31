@@ -76,7 +76,7 @@ def dfs(initial_state, limit=-1):
                 if neighbor.depth > max_depth:
                     max_depth = neighbor.depth
                 
-                if limit > 0 and neighbor.depth <= limit:
+                if (limit < 0) or (limit > 0 and neighbor.depth <= limit):
                     stack.append(neighbor)
                     explored.add(neighbor.key)
 
