@@ -1,5 +1,6 @@
 from state import State, traceback_board
 from collections import deque
+from heapq import heapify, heappush, heappop 
 
 def bfs(initial_state):
 
@@ -116,28 +117,29 @@ def astar(initial_state):
     max_frontier    = 0
 
     # Create a stack for the states to be explored
-    stack = [] # Stack is LIFO
+    hp = [] # Stack is LIFO
+    heapify(hp)
     explored = set()
 
     # Add the initial state to the stack
-    stack.append(initial_state)
+    heappush(hp, initial_state)
     
-    while stack:
+    while hp:
     
         # Remove the first state from the stack
-        current_state = stack.pop(0)
+        current_state = heappop(hp)
         
         if max_depth < current_state.depth:
             max_depth = current_state.depth
         
-        if len(stack) > max_frontier:
-            max_frontier = len(stack)
+        if len(hp) > max_frontier:
+            max_frontier = len(hp)
         
         explored.add(current_state.key)
         
         # Current State ??        
         if current_state.goal():
-            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
+            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(hp), "scanned": len(explored)}
 
         # Generating Children        
         children = current_state.get_neighbors(False)
@@ -147,12 +149,12 @@ def astar(initial_state):
         
         # Filtering the children
         children = [child for child in children if child.key not in explored]
-        # Most Valuable Child
-        stack.extend(children)
         
-        stack = sorted(stack, key=lambda x: x.cost)
+        # Most Valuable Child
+        for child in children:
+            heappush(hp, child)
          
-    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(hp), "scanned": len(explored)}
 
 
 

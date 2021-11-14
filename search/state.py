@@ -60,7 +60,11 @@ class State:
 
     def __str__(self):
         return traceback(self)
-
+    
+    
+    def __lt__(self, other):
+        return self.cost < other.cost
+    
 
     def index(self, i, j):
         return self.state[i * self.size + j]

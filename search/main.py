@@ -61,7 +61,7 @@ def main():
     return
 
 METHODS = {'bfs': bfs, 'dfs': dfs, 'idfs': idfs, "astar": astar, "greedy": greedy}
-HEURISTIC = {'bfs': hrc.heuristic_default, 'dfs': hrc.heuristic_default, 'idfs': hrc.heuristic_default, "astar": hrc.heuristic_manhattan_2, 'greedy': hrc.heuristic_manhattan}
+HEURISTIC = {'bfs': hrc.heuristic_default, 'dfs': hrc.heuristic_default, 'idfs': hrc.heuristic_default, "astar": hrc.heuristic_astar, 'greedy': hrc.heuristic_manhattan}
 
 
 if __name__ == '__main__':

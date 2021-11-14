@@ -4,8 +4,8 @@ Path             : left, up, right, down, left, left, up, up, right, down, right
 Cost             : 30
 Depth            : 30
 Max_Depth        : 30
-Final_Frontier   : 9797
-Max_Frontier     : 9797
-Scanned          : 17126
-Elapsed_Time     : 23.69269299507141 s
-RAM_Usage        : 25.284 kb
+Final_Frontier   : 9299
+Max_Frontier     : 9299
+Scanned          : 16232
+Elapsed_Time     : 0.9954617023468018 s
+RAM_Usage        : 24.236 kb
