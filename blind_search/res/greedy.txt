@@ -1,11 +1,8 @@
 Method: greedy
-Final State Found: True
-Path             : up, left, up, left, down, down, right, up, right, down, left, up, up, right, down, left, up, left, down, down, right, right, up, left, up, left, down, down, right, right
-Cost             : 2
-Depth            : 30
-Max_Depth        : 0
-Final_Frontier   : 2741
-Max_Frontier     : 0
-Scanned          : 181420
-Elapsed_Time     : 38.89027380943298 s
-RAM_Usage        : 190.716 kb
+Final State Found: False
+Max_Depth        : 140
+Final_Frontier   : 0
+Max_Frontier     : 1
+Scanned          : 141
+Elapsed_Time     : 0.008355379104614258 s
+RAM_Usage        : 8.636 kb
