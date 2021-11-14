@@ -8,6 +8,8 @@ import resource
 # Own
 from show import show
 from algorithms.search import *
+import algorithms.heuristic as hrc
+
 from state import State, traceback_board
 
 def create(input):
@@ -26,8 +28,7 @@ def main():
     table, size = create(sys.argv[2])
     goal = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-    goal_state = "".join(str(i) for i in goal)
-    state = State(table, goal_state)
+    state = State(table, goal)
     
     # Running
 
@@ -35,7 +36,7 @@ def main():
     
     if METHODS.get(method) is None:
         raise AttributeError("Method not found")
-    feedback = METHODS[method](State(table, goal_state))
+    feedback = METHODS[method](State(table, goal, h = HEURISTIC[method]))
     end_time = time.time()
 
 
@@ -61,7 +62,9 @@ def main():
         traceback_board(current_state) 
     return
 
-METHODS = {'bfs': bfs, 'dfs': dfs, 'idfs': idfs}
+METHODS = {'bfs': bfs, 'dfs': dfs, 'idfs': idfs, "astar": astar}
+HEURISTIC = {'bfs': hrc.heuristic_default, 'dfs': hrc.heuristic_default, 'idfs': hrc.heuristic_default, "astar": hrc.heuristic_manhattan}
+
 
 if __name__ == '__main__':
     main()

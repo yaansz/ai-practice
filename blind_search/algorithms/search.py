@@ -107,3 +107,42 @@ def idfs(initial_state):
 
         return final
     return final
+
+
+def astar(initial_state):
+    
+    # Performance
+    max_depth       = 0
+    max_frontier    = 0
+
+    # Create a stack for the states to be explored
+    stack = deque() # Stack is LIFO
+    explored = set()
+
+    # Add the initial state to the stack
+    stack.append(initial_state)
+    
+    while stack:
+    
+        # Remove the first state from the stack
+        current_state = stack.popleft()
+        
+        # Current State ??        
+        if current_state.goal():
+            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
+
+        
+        # Generating Children        
+        children = current_state.get_neighbors()
+        
+        distances = [child.h(child) for child in children]
+        
+        print(distances)
+        
+        return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
+
+        
+
+    # If the stack is empty and the goal state has not been found
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
+    

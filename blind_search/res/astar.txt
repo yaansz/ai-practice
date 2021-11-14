@@ -1,0 +1,11 @@
+Method: astar
+Final State Found: True
+Path             : 
+Cost             : 16
+Depth            : 0
+Max_Depth        : 0
+Final_Frontier   : 0
+Max_Frontier     : 0
+Scanned          : 0
+Elapsed_Time     : 0.0005576610565185547 s
+RAM_Usage        : 8.044 kb
