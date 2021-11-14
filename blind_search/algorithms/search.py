@@ -59,11 +59,11 @@ def dfs(initial_state, limit=-1):
 
     # While the stack is not empty
     while stack:
-
+        
         # Remove the first state from the stack
         current_state = stack.pop()
         explored.add(current_state.key)
-
+        
         # If the current state is the goal state
         if current_state.goal():
             return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
@@ -116,7 +116,7 @@ def astar(initial_state):
     max_frontier    = 0
 
     # Create a stack for the states to be explored
-    stack = deque() # Stack is LIFO
+    stack = [] # Stack is LIFO
     explored = set()
 
     # Add the initial state to the stack
@@ -125,21 +125,27 @@ def astar(initial_state):
     while stack:
     
         # Remove the first state from the stack
-        current_state = stack.popleft()
+        current_state = stack.pop(0)
+        explored.add(current_state.key)
         
         # Current State ??        
         if current_state.goal():
             return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
 
-        
         # Generating Children        
-        children = current_state.get_neighbors()
+        children = current_state.get_neighbors(False)
+        # Calculating the cost to the specific child
+        for child in children:
+            child.cost = child.h(child)
         
-        distances = [child.h(child) for child in children]
+        # Filtering the children
+        children = [child for child in children if child.key not in explored]
+        # Most Valuable Child
+        stack.extend(children)
         
-        print(distances)
-        
-        return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
+        stack = sorted(stack, key=lambda x: x.cost)
+         
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
 
         
 

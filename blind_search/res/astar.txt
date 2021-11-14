@@ -1,11 +1,11 @@
 Method: astar
 Final State Found: True
-Path             : 
-Cost             : 16
-Depth            : 0
+Path             : left, up, right, down, left, left, up, up, right, down, right, up, left, down, down, left, up, up, right, down, down, right, up, left, down, left, up, right, right, down
+Cost             : 30
+Depth            : 30
 Max_Depth        : 0
-Final_Frontier   : 0
+Final_Frontier   : 9797
 Max_Frontier     : 0
-Scanned          : 0
-Elapsed_Time     : 0.0005576610565185547 s
-RAM_Usage        : 8.044 kb
+Scanned          : 17126
+Elapsed_Time     : 18.833747625350952 s
+RAM_Usage        : 24.996 kb

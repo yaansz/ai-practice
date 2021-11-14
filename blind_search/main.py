@@ -58,8 +58,6 @@ def main():
     f.write(f"RAM_Usage        : {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1000.0} kb\n")
     f.close()
 
-    if(method == "bfs"):
-        traceback_board(current_state) 
     return
 
 METHODS = {'bfs': bfs, 'dfs': dfs, 'idfs': idfs, "astar": astar}
