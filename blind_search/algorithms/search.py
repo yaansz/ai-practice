@@ -147,8 +147,71 @@ def astar(initial_state):
          
     return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
 
-        
 
-    # If the stack is empty and the goal state has not been found
-    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(stack), "scanned": len(explored)}
+def greedy2(initial_state):
     
+    # Performance
+    max_depth       = 0
+    max_frontier    = 0
+
+    # Create a queue for the states to be explored
+    queue = deque()
+    explored = set()
+
+    # Add the initial state to the queue
+    queue.append(initial_state)
+
+    # While the queue is not empty
+    while queue:
+
+        # Remove the first state from the queue
+        current_state = queue.popleft()
+        explored.add(current_state.key)
+
+        # If the current state is the goal state
+        if current_state.goal():
+            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": len(explored)}
+
+
+        # Add the current state's children to the queue
+        neighbors = sorted(current_state.get_neighbors(), key = lambda x: x.h(x))
+        
+        for neighbor in neighbors:
+            if neighbor.key not in explored:
+                neighbor.cost = neighbor.h(neighbor)
+                #print(neighbor.cost)
+                queue.append(neighbor)
+                continue
+
+    # If the queue is empty and the goal state has not been found
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": len(explored)}
+
+
+
+def greedy(initial_node):
+    
+    queue = deque([initial_node])
+    explored = set()
+    
+    # Performance
+    max_depth       = 0
+    max_frontier    = 0
+
+    
+    while queue:
+        current_state = queue.popleft()
+        explored.add(current_state.key)
+        
+        if current_state.goal():
+            return {"state": current_state, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": len(explored)}
+
+        neighbors = sorted(current_state.get_neighbors(), key = lambda x: x.h(x))
+        
+        for neighbor in neighbors:
+            if neighbor.key not in explored:
+                queue.append(neighbor)
+                continue
+
+        
+    # If the queue is empty and the goal state has not been found
+    return {"state": None, "max_depth": max_depth, "max_frontier": max_frontier, "final_frontier": len(queue), "scanned": len(explored)}

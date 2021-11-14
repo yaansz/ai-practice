@@ -7,5 +7,5 @@ Max_Depth        : 0
 Final_Frontier   : 9797
 Max_Frontier     : 0
 Scanned          : 17126
-Elapsed_Time     : 18.833747625350952 s
-RAM_Usage        : 24.996 kb
+Elapsed_Time     : 23.132165670394897 s
+RAM_Usage        : 25.228 kb
