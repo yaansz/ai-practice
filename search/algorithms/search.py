@@ -126,6 +126,13 @@ def astar(initial_state):
     
         # Remove the first state from the stack
         current_state = stack.pop(0)
+        
+        if max_depth < current_state.depth:
+            max_depth = current_state.depth
+        
+        if len(stack) > max_frontier:
+            max_frontier = len(stack)
+        
         explored.add(current_state.key)
         
         # Current State ??        

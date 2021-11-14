@@ -3,9 +3,9 @@ Final State Found: True
 Path             : left, up, right, down, left, left, up, up, right, down, right, up, left, down, down, left, up, up, right, down, down, right, up, left, down, left, up, right, right, down
 Cost             : 30
 Depth            : 30
-Max_Depth        : 0
+Max_Depth        : 30
 Final_Frontier   : 9797
-Max_Frontier     : 0
+Max_Frontier     : 9797
 Scanned          : 17126
-Elapsed_Time     : 23.132165670394897 s
-RAM_Usage        : 25.228 kb
+Elapsed_Time     : 23.69269299507141 s
+RAM_Usage        : 25.284 kb
